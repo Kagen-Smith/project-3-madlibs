@@ -1,4 +1,4 @@
-import StoryTemplate, { IStoryTemplate } from './src/models/createStoryTemplate'; // Import the Mongoose model
+import StoryTemplate, { IStoryTemplate } from './src/models/storyTemplate'; // Import the Mongoose model
 
 const resolvers = {
   Query: {
