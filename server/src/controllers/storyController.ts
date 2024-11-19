@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Story from '../models/storyTemplate';
 
-export const getStories = async (req: Request, res: Response): Promise<void> => {
+export const getStories = async (_req: Request, res: Response): Promise<void> => {
     try {
         const stories = await Story.find();
         
@@ -51,7 +51,7 @@ export const deleteStory = async (req: Request, res: Response): Promise<void> =>
         }
         res.json({ message: 'Story deleted' });
         return 
-    } catch (err) {
+    } catch (err: any) {
         res.status(500).json({ message: err.message });
     }
 }

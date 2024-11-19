@@ -1,51 +1,69 @@
 import { Schema, model, type Document } from 'mongoose';
+import bcrypt from 'bcrypt';
 
-interface User extends Document {
-    username: string;
-    password: string;
-    email: string;
-    stories: Schema.Types.ObjectId[];
+// import schema 
+import storyschema from '../schemas/storySchema';
+import type { StoryTemp } from '../models/storyTemplate';
+
+export interface UserDocument extends Document {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  savedStories: StoryTemp[];
+  isCorrectPassword(password: string): Promise<boolean>;
+  bookCount: number;
 }
 
-const userSchema = new Schema<User>(
-    {
-        username: {
-            type: String, 
-            unique: true,
-            required: true,
-            trim: true
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
-        },
-        password: {
-            type: String,
-            required: true,
-            match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, 'Password must be at least 8 characters and contain at least one lowercase letter, one uppercase letter, and one number']
-
-        },
-        stories: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Story'
-            }
-        ]
-    }, 
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        timestamps: true,
+const userSchema = new Schema<UserDocument>(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
+    },
+    password: {
+      type: String,
+      required: true,
+      match: [ /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number'],
+    },
+    // set savedBooks to be an array of data that adheres to the bookSchema
+    savedStories: [storySchema],
+  },
+  // set this to use virtual below
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
 );
 
-userSchema.virtual('storyCount').get(function() {
-    return this.stories.length;
+// hash user password
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
 });
 
-const User = model<User>("User", userSchema);
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password: string) {
+  return await bcrypt.compare(password, this.password);
+};
+
+// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
+userSchema.virtual('bookCount').get(function () {
+  return this.savedStories.length;
+});
+
+const User = model<UserDocument>('User', userSchema);
 
 export default User;

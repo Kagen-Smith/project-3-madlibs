@@ -1,4 +1,4 @@
-import { Schema, model, type Document, Types } from 'mongoose';
+import { Schema, model, type Document} from 'mongoose';
 
 
 interface StoryTemp extends Document {
