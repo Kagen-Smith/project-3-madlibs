@@ -1,3 +1,24 @@
+
+{
+  "name": "project-3-madlibs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "project-3-madlibs": "file:"
+  }
+}
+
 {
   "name": "project-3-madlibs",
   "version": "1.0.0",
@@ -17,3 +38,4 @@
     "concurrently": "^8.2.0"
   }
 }
+
