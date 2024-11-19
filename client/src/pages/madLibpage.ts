@@ -11,21 +11,21 @@ interface Field {
 }
 
 interface Template {
-    text: string; // Template text with placeholders
-    fields: Field[]; // Array of input fields
-  }
-  
-  const MadLibPage: React.FC = () => {
-    const { id } = useParams<{ id: string }>(); // Get template ID from route params
-    const { loading, error, data } = useQuery(FETCH_TEMPLATE_BY_ID, { variables: { id } });
-    const [story, setStory] = useState<string>(''); // State to store the generated story
-  
-    if (loading) return <p>Loading...</p>; // Loading state
-    if (error) return <p>Error loading template</p>; // Error state
-  
-    const template: Template = data.template;
+  text: string; // Template text with placeholders
+  fields: Field[]; // Array of input fields
+}
 
-    // Replace placeholders with user input
+const MadLibPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>(); // Get template ID from route params
+  const { loading, error, data } = useQuery(FETCH_TEMPLATE_BY_ID, { variables: { id } });
+  const [story, setStory] = useState<string>(''); // State to store the generated story
+
+  if (loading) return <p>Loading...</p>; // Loading state
+  if (error) return <p>Error loading template</p>; // Error state
+
+  const template: Template = data.template;
+
+  // Replace placeholders with user input
   const handleGenerateStory = (inputs: Record<string, string>) => {
     let generatedStory = template.text;
     Object.keys(inputs).forEach((key) => {
