@@ -37,4 +37,4 @@ export const login = async (req: Request, res: Response) => {
         const token = signToken(user.username, user.password, user._id);
         return res.json({ token, user });
 };
-  };
+

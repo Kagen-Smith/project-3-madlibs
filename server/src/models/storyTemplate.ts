@@ -1,7 +1,7 @@
 import { Schema, model, type Document} from 'mongoose';
 
 
-interface StoryTemp extends Document {
+export interface StoryTemp extends Document {
     Title: string;
     Story: string;
     words: string[];
