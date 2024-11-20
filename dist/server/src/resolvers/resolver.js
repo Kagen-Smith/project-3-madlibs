@@ -1,5 +1,5 @@
-import User from '../models/user.js';
-import { signToken, AuthenticationError } from '../config/jwt.js';
+import User from '../models/user';
+import { signToken, AuthenticationError } from '../config/jwt';
 const resolvers = {
     Query: {
         // Query to get a single user by ID or username
