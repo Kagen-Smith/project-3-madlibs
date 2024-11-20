@@ -2,6 +2,7 @@ import { Schema, model, type Document} from 'mongoose';
 
 
 export interface StoryTemp extends Document {
+    [x: string]: any;
     Title: string;
     Story: string;
     words: string[];

@@ -13,13 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-
-  "description": "",
-  "dependencies": {
-    "server": "file:"
-  }
-}
-
   "dependencies": {
     "bcrypt": "^4.0.1",
     "express": "^4.19.2",
