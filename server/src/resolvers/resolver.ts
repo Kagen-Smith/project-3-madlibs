@@ -1,8 +1,8 @@
 // @ts-ignore
-import StoryInput from './typedefs';
-import User, { UserDocument } from '../models/user';
-import { StoryTemp } from '../models/storyTemplate';
-import { signToken, AuthenticationError } from '../config/jwt';
+import StoryInput from './typedefs.js';
+import User, { UserDocument } from '../models/user.js';
+import { StoryTemp } from '../models/storyTemplate.js';
+import { signToken, AuthenticationError } from '../config/jwt.js';
 
 const resolvers = {
     Query: {

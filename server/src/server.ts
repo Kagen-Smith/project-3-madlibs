@@ -2,8 +2,8 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { typeDefs } from './schemas/index';
-import resolvers from './resolvers/resolver';
+import { typeDefs } from './schemas/index.js';
+import resolvers from './resolvers/resolver.js';
 import jwt from 'jsonwebtoken';
 import { ConnectOptions } from 'mongoose';
 

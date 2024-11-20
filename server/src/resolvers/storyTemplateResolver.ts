@@ -1,5 +1,5 @@
-import StoryTemplate, { StoryTemp } from '../models/storyTemplate';
-import IStoryTemplate from '../models/storyTemplate'; // Import the IStoryTemplate interface as the default export
+import StoryTemplate, { StoryTemp } from '../models/storyTemplate.js';
+import IStoryTemplate from '../models/storyTemplate.js'; // Import the IStoryTemplate interface as the default export
 
 const storyTemplateResolvers = {
   Query: {
