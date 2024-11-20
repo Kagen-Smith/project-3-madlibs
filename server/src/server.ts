@@ -1,5 +1,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { expressMiddleware } from '@apollo/server/express4'; 
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { typeDefs } from './schemas/index';
@@ -13,6 +14,7 @@ dotenv.config();
 const app = express();
 
 // JWT Authentication Middleware
+const authMiddleware = (req: any, _res: any, next: any) => {
 const authMiddleware = (req: any, _res: any, next: any) => {
     const token = req.headers.authorization || '';
     try {
