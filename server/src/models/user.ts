@@ -2,8 +2,8 @@ import { Schema, model, type Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // import schema 
-import storyTemplate from '../models/storyTemplate';
-import type { StoryTemp } from '../models/storyTemplate';
+import storyTemplate from '../models/storyTemplate.js';
+import type { StoryTemp } from '../models/storyTemplate.js';
 
 export interface UserDocument extends Document {
   id: string;
