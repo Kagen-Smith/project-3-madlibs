@@ -7,8 +7,7 @@ interface MadLibStoryProps {
 const MadLibStory: React.FC<MadLibStoryProps> = ({ story }) => {
   return (
     <div>
-      <h2>Your Mad Lib Story</h2>
-      <p>{story}</p> {/* Display the story passed as a prop */}
+      <h2>{story}</h2> {/* Display the story passed as a prop */}
     </div>
   );
 };
