@@ -22,9 +22,9 @@ const MadLibForm: React.FC<MadLibFormProps> = ({ fields, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       {/* Dynamically render input fields based on the `fields` prop */}
-      {fields.map((field, index) => (
+       {fields.map((field, index) => (
         <div key={index}>
           <label htmlFor={field.name}>{field.label}</label>
           <input

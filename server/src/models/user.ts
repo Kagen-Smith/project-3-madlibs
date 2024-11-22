@@ -2,7 +2,6 @@ import { Schema, model, type Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // import schema 
-import storyTemplate from '../models/storyTemplate.js';
 import type { StoryTemp } from '../models/storyTemplate.js';
 
 export interface UserDocument extends Document {
@@ -34,7 +33,12 @@ const userSchema = new Schema<UserDocument>(
       match: [ /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number'],
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
-    savedStories: [storyTemplate],
+    savedStories: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'StoryTemplate',
+      },
+    ],
   },
   // set this to use virtual below
   {
