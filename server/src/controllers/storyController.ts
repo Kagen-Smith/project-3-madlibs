@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Story from '../models/storyTemplate';
+import Story from '../models/storyTemplate.js';
 
 export const getStories = async (_req: Request, res: Response): Promise<void> => {
     try {

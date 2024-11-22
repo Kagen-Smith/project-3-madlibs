@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { fetchPhotos } from '../api/unsplashApi';
 
 const PhotoSearch: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -7,10 +7,8 @@ const PhotoSearch: React.FC = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('/api/unsplash/photos', {
-        params: { query },
-      });
-      setPhotos(response.data);
+      const results = await fetchPhotos(query);
+      setPhotos(results);
     } catch (error) {
       console.error('Error fetching photos:', error);
     }

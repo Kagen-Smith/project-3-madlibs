@@ -15,18 +15,18 @@ const typeDefs = `
     }
     type Auth {
         token: ID!
-        user: User
+        user: UserInfo
     }
 
     type Query {
-        me: User
+        me: UserInfo
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        saveStory(storyData: StoryInput!): User
-        removeStory(storyId: ID!): User
+        saveStory(storyData: StoryInput!): UserInfo
+        removeStory(storyId: ID!): UserInfo
     }
 
     input StoryInput {

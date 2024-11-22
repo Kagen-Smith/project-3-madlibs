@@ -1,8 +1,8 @@
 // @ts-ignore
-import StoryInput from './typedefs';
-import User, { UserDocument } from '../models/user';
-import { StoryTemp } from '../models/storyTemplate';
-import { signToken, AuthenticationError } from '../config/jwt';
+import StoryInput from './typedefs.js';
+import User, { UserDocument } from '../models/user.js';
+import { StoryTemp } from '../models/storyTemplate.js';
+import { signToken, AuthenticationError } from '../config/jwt.js';
 
 const resolvers = {
     Query: {
@@ -36,7 +36,7 @@ const resolvers = {
         login: async (_parent: any, { email, password }: any): Promise<{ token: string; user: UserDocument } | null>  => {
             // Find user by username or email
             const user = await User.findOne({ email });
-
+            console.log(user);
             // if user is not found, throw an error
             if (!user) {
                 throw new AuthenticationError("Can't find this user.");
@@ -50,6 +50,7 @@ const resolvers = {
             }
             // Sign a token for the user
             const token = signToken(user.username, user.email, user._id);
+            console.log(token);
             return { token, user };
         },
         addUser: async (_parent: any, args: any): Promise<{ token: string; user: UserDocument } | null> => {

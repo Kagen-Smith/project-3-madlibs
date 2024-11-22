@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'; 
-import { signToken } from '../config/jwt';
-import User from '../models/user'; // Add this line
+import { signToken } from '../config/jwt.js';
+import User from '../models/user.js'; // Add this line
 
 export const getSingleUser = async (req: Request & { user?: { _id: string } }, res: Response) => {
         const foundUser = await User.findOne({

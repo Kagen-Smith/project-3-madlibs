@@ -1,20 +1,31 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import HomePage from './pages/homePage.ts'
 import './index.css'
-import { ApolloProvider } from '@apollo/client';
-import client from './apollo-client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import MadLibPage from './pages/madLibpage.tsx'
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root')
-);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <div>404 Not Found</div>,
+    children: [
+      {
+        path: '/', // Add the 'path' property here
+        index: true, 
+        element: <HomePage />,
+      },
+      {
+        path: '/madlib/:id',
+        element: <MadLibPage />,
+      },
+    ],
+  },
 
+]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />)
+}
