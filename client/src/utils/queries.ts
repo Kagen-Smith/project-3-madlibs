@@ -51,3 +51,14 @@ export const QUERY_SINGLE_PROFILE = gql`
         }
     }
 `;
+
+
+export const FETCH_TEMPLATES = gql`
+    query templates {
+        templates {
+            id
+            title
+            text
+            }
+            }
+            `;

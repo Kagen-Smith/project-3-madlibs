@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { FETCH_TEMPLATES } from '../graphql/queries';
+import { FETCH_TEMPLATES } from '../utils/queries';
 import TemplateCard from '../components/TemplateCard';
 import styled from 'styled-components';
 
