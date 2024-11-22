@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { typeDefs } from './src/schemas/index';
 import { resolvers } from './src/resolvers/resolver';
+import unsplashRoutes from './routes/unsplashRoutes';
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ const authMiddleware = (req: any, res: any, next: any) => {
     }
     next();
 };
+
+app.use('/api/unsplash', unsplashRoutes);
 
 app.use(authMiddleware);
 
@@ -40,7 +43,6 @@ const server = new ApolloServer({
     });
 })();
 
-=======
 async function startServer() {
     const server = new ApolloServer({
         typeDefs,
