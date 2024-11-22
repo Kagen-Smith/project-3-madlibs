@@ -1,9 +1,5 @@
 import './App.css'
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, { useState } from 'react';
-import TemplatesList from './components/TemplatesList';
-import PlayMadLib from './components/PlayMadLib';
-import CompletedStories from './components/CompletedStories';
 import PhotoSearch from './components/PhotoSearch';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 

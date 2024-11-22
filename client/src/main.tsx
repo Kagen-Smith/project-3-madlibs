@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import HomePage from './pages/homePage.ts'
+import HomePage from './pages/HomePage.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MadLibPage from './pages/madLibpage.tsx'
+import MadLibPage from './pages/MadLibPage.tsx'
 
 const router = createBrowserRouter([
   {
