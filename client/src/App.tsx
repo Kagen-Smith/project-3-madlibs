@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import TemplatesList from './components/TemplatesList';
 import PlayMadLib from './components/PlayMadLib';
 import CompletedStories from './components/CompletedStories';
+import PhotoSearch from './components/PhotoSearch';
 
 const client = new ApolloClient({
   uri: '', // Fill in with GraphQL API endpoint

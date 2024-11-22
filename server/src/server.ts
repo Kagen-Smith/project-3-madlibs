@@ -6,6 +6,7 @@ import { typeDefs } from './schemas/index.js';
 import resolvers from './resolvers/resolver.js';
 import jwt from 'jsonwebtoken';
 import { ConnectOptions } from 'mongoose';
+import unsplashRoutes from './routes/unsplashRoutes';
 
 
 dotenv.config();
@@ -48,6 +49,8 @@ function expressMiddleware(_server: ApolloServer<import("apollo-server-express")
 function startServer() {
     throw new Error('Function not implemented.');
 }
+
+app.use('/api/unsplash', unsplashRoutes);
 
 startServer();
 
