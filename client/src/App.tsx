@@ -1,14 +1,14 @@
 import './App.css';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { useState } from 'react';
-import TemplatesList from './components/TemplatesList';
-import PlayMadLib from './components/PlayMadLib';
-import CompletedStories from './components/CompletedStories';
+import TemplatesList from './components/templateCard';
+import PlayMadLib from './components/playMadlib';
+import CompletedStories from './components/madLibStory';
 import PhotoSearch from './components/PhotoSearch'; // New component for Unsplash API integration
 
 // Configure Apollo Client
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql', // Replace with your GraphQL API endpoint
+  uri: 'http://localhost:3001/graphql', // Replace with your GraphQL API endpoint
   cache: new InMemoryCache(),
 });
 
