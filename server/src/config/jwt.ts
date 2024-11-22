@@ -35,7 +35,8 @@ export const authenticateToken = ({ req }: any) => {
 
 export const signToken = (username: string, email: string, _id: unknown) => {
   const payload = { username, email, _id };
-  const secretKey = process.env.JWT_SECRET_KEY || ''; 
+  const secretKey: any = process.env.JWT_SECRET_KEY || 'secret'; 
+  console.log(secretKey);
   return jwt.sign({ data: payload }, secretKey, { expiresIn: '2h' });
 };
 
