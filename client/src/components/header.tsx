@@ -4,6 +4,10 @@ import AuthService from '../utils/auth';
 import Navbar from './Navbar';
 
 
+/**
+ * Renders the header component.
+ * @returns The JSX element representing the header component.
+ */
 const Header = () => {
     const logout = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();

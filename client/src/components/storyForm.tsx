@@ -9,6 +9,12 @@ interface StoryFormProps {
     templateId: string;
     }
 
+/**
+ * Represents a form for adding a story.
+ * @param {StoryFormProps} props - The component props.
+ * @param {string} props.templateId - The ID of the template for the story.
+ * @returns {JSX.Element} The rendered StoryForm component.
+ */
 const StoryForm: React.FC<StoryFormProps> = ({ templateId }) => {
     const [story, setStory] = useState({
         title: '',
@@ -17,6 +23,12 @@ const StoryForm: React.FC<StoryFormProps> = ({ templateId }) => {
  
     const [addStory] = useMutation(CREATE_STORY);
     const [characterCount, setCharacterCount] = useState(0);
+
+    /**
+     * Handles the form submission.
+     * @param {FormEvent} event - The form event.
+     * @returns {Promise<void>} A Promise that resolves when the form submission is complete.
+     */
     const handleFormSubmit = async (event: FormEvent) => {
         event.preventDefault();
         try {

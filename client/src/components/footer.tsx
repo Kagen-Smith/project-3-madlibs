@@ -1,9 +1,19 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
+/**
+ * Footer component for the application.
+ * 
+ * @returns The rendered Footer component.
+ */
 const Footer: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    /**
+     * Handles the go back functionality.
+     * If the window history length is greater than 1, it navigates back.
+     * Otherwise, it navigates to the home page.
+     */
     const handleGoBack = () => {
         if(window.history.length > 1) {
             navigate(-1);
@@ -11,6 +21,7 @@ const Footer: React.FC = () => {
             navigate('/');
         }
     }
+
     return (
         <footer className="bg-dark text-light p-4">
             <div className="container flex-row justify-space-between-lg justify-center align-center">
