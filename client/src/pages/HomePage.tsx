@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
       <h1>Choose a Mad Lib Template</h1>
       <TemplateList>
         {loading && <p>Loading...</p>}
-        <TemplatesList templates={templates} />
+        <TemplatesList template={templates} />
 
       </TemplateList>
     </Container>

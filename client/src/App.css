@@ -7,19 +7,24 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
-  margin-bottom: 2em;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: auto;
 }
 
 .main {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex-grow: 1vh;
+
+  justify-content: space-between;
 }
 
-.footer {
-  margin-top: 2em;
-  position:absolute;
-}
 
 .logo {
   height: 6em;
