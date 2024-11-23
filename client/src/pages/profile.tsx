@@ -1,10 +1,8 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
+import AuthService from '../utils/auth'; 
+import Story from '../models/story';
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -21,7 +19,7 @@ const Profile = () => {
   const profile = data?.me || data?.profile || {};
 
   // Use React Router's `<Navigate />` component to redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
+  if (AuthService.loggedIn() && AuthService.getProfile().data._id === profileId) {
     return <Navigate to="/me" />;
   }
 
@@ -38,24 +36,24 @@ const Profile = () => {
     );
   }
 
-  return (
+return (
     <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} Profile
-      </h2>
-      <div className="card-body">
-        <h5 className="card-header">Stories</h5>
+        <h2 className="card-header">
+            {profileId ? `${profile.name}'s` : 'Your'} Profile
+        </h2>
         <div className="card-body">
-          {profile.stories?.map((story) => (
-            <div key={story._id} className="mb-3">
-              <p className="card-header">{story.title}</p>
-              <p>{story.story}</p>
+            <h5 className="card-header">Stories</h5>
+            <div className="card-body">
+                {profile.stories?.map((story: Story) => (
+                    <div key={story._id} className="mb-3">
+                        <p className="card-header">{story.title}</p>
+                        <p>{story.story}</p>
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
-      </div>
     </div>
-  );
+);
 };
 
 export default Profile;

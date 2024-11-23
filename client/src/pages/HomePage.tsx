@@ -19,6 +19,7 @@ const HomePage: React.FC = () => {
     <Container>
       <h1>Choose a Mad Lib Template</h1>
       <TemplateList>
+       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {templates.map((template: any) => (
           <TemplateCard key={template.id} template={template} />
         ))}

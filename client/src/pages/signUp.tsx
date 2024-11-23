@@ -1,9 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
-
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../utils/mutations';
-
 import Auth from '../utils/auth';
 
 const Signup = () => {

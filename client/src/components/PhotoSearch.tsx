@@ -25,6 +25,7 @@ const PhotoSearch: React.FC = () => {
       />
       <button onClick={handleSearch}>Search</button>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '20px' }}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {photos.map((photo: any) => (
           <div key={photo.id} style={{ width: '150px', height: '150px' }}>
             <img

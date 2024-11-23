@@ -51,3 +51,23 @@ export const QUERY_SINGLE_PROFILE = gql`
         }
     }
 `;
+
+export const CREATE_STORY = gql`
+    mutation createStory($title: String!, $story: String!) {
+        createStory(title: $title, story: $story) {
+            _id
+            title
+            story
+        }
+    }
+`;
+
+export const REMOVE_STORY = gql`
+    mutation removeStory($id: ID!) {
+        removeStory(_id: $id) {
+            _id
+            title
+            story
+        }
+    }
+`;
