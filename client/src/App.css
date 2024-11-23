@@ -5,6 +5,22 @@
   text-align: center;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.main {
+  position: relative;
+}
+
+.footer {
+  margin-top: 2em;
+  position:absolute;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -27,11 +43,37 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Small screens (mobile phones) */
+@media (max-width: 575px) {
+  .portfolio-section {
+    padding: 1.5rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-title {
+    font-size: 1.2rem;
   }
 }
+
+/* Medium screens (tablets) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .project-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+
 
 .card {
   padding: 2em;

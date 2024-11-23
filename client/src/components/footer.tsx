@@ -1,12 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 /**
  * Footer component for the application.
  * 
  * @returns The rendered Footer component.
  */
 const Footer: React.FC = () => {
-    const location = useLocation();
     const navigate = useNavigate();
 
     /**
@@ -23,14 +22,38 @@ const Footer: React.FC = () => {
     }
 
     return (
-        <footer className="bg-dark text-light p-4">
+        <StyledFooter className="bg-dark text-light p-4">
             <div className="container flex-row justify-space-between-lg justify-center align-center">
-                <button onClick={handleGoBack}>Go Back</button>
-                <p>{location.pathname}</p>
+                <StyledButton onClick={handleGoBack}>Go Back</StyledButton>
                 <h4>&copy; {new Date().getFullYear()} - team 7</h4>
             </div>
-        </footer>
+        </StyledFooter>
     )
 }
 
 export default Footer;
+
+// Styled Components
+const StyledButton = styled.button`
+    background-color: pink;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+`;
+const StyledFooter = styled.footer`
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    position: sticky;
+    bottom: 0;
+    min-height: 100%;
+    max-height: 100%;
+    justify-content: space-between;
+    min-width: 100%;
+    max-width: 100%;
+    display: flex-row
+    `;
+    

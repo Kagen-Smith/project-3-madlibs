@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { type MouseEvent } from 'react';
-import AuthService from '../utils/auth';
+import styled from 'styled-components';
+
 import Navbar from './Navbar';
 
 
@@ -9,33 +9,30 @@ import Navbar from './Navbar';
  * @returns The JSX element representing the header component.
  */
 const Header = () => {
-    const logout = (event: MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        AuthService.logout();
-    };
+
     return (
-        <header className="bg-dark text-light p-4">
+        <StyledHeader className="bg-dark text-light p-4">
             <div className="container flex-row justify-space-between-lg justify-center align-center">
                 <Link to="/">
-                    <h1>MadLibs</h1>
                 </Link>
-                <nav className="text-center">
-                    {AuthService.loggedIn() ? (
-                        <>
-                            <Link to="/me">My Profile</Link>
-                            <button onClick={logout}>Logout</button>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="/login">Login</Link>
-                            <Link to="/signup">Signup</Link>
-                        </>
-                    )}
+   
                     <Navbar />
-                </nav>
             </div>
-        </header>
+        </StyledHeader>
     );
+
 }
 
 export default Header;
+// Styled Components
+const StyledHeader = styled.header`
+    background-color: #4caf50;
+    min-hight: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    bottom: 0;
+    display: flex-row;
+    justify-content: space-between;
+    position: sticky;
+    `
