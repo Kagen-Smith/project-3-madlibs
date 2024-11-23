@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { FETCH_TEMPLATES } from '../graphql/queries';
+import { FETCH_TEMPLATES } from '../utils/queries';
 import TemplateCard from '../components/TemplateCard';
 import styled from 'styled-components';
 
@@ -19,6 +19,7 @@ const HomePage: React.FC = () => {
     <Container>
       <h1>Choose a Mad Lib Template</h1>
       <TemplateList>
+       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {templates.map((template: any) => (
           <TemplateCard key={template.id} template={template} />
         ))}

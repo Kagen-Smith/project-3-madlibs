@@ -1,11 +1,10 @@
 import './App.css'
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, { useState } from 'react';
-import TemplatesList from './components/TemplatesList';
-import PlayMadLib from './components/PlayMadLib';
-import CompletedStories from './components/CompletedStories';
 import PhotoSearch from './components/PhotoSearch';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import TemplatesList from './components/TemplatesList';
+import { JSX } from 'react/jsx-runtime';
 
 
 
@@ -53,8 +52,16 @@ const App: React.FC = () => {
                     onSelect={(template) => {
                       setSelectedTemplate(template);
                       window.location.href = '/play'; // Navigate to Play page when template is selected
-                    }}
-                  />
+                    } } story={{
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+                      map: function (_arg0: (story: any) => JSX.Element): React.ReactNode {
+                        throw new Error('Function not implemented.');
+                      },
+                      length: 0,
+                      _id: '',
+                      title: '',
+                      story: ''
+                    }} isLoggedUser={false}                  />
                 }
               />
 
