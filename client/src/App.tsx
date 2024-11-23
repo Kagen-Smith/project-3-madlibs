@@ -15,12 +15,12 @@ const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <link rel="stylesheet" href="app.css" />
-        <div  >
+        <div className='header' >
           <Header /> 
           {/* combined components into one file for easier readability */}
 
           {/* Main Content */}
-          <main>
+          <main className='main'>
           <Outlet />
           </main>
 

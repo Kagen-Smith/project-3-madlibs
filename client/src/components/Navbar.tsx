@@ -13,8 +13,7 @@ const Navbar: React.FC = () => {
       <Logo>MadLibs</Logo>
       <NavLinks>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/create">Create Template</StyledLink>
-        <StyledLink to="/photo ">Photo search</StyledLink>
+        <StyledLink to="/photo">Photo search</StyledLink>
         {AuthService.loggedIn() ? (
                         <>
                             <StyledLink to="/me">My Profile</StyledLink>

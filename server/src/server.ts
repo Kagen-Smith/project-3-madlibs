@@ -62,20 +62,22 @@
 
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import mongoose from 'mongoose';
+import { expressMiddleware } from '@apollo/server/express4';
+import path from 'path';
+import { typeDefs, resolvers } from './schemas/index.js';
+import db from './config/db.js';
 import dotenv from 'dotenv';
-import { typeDefs } from './schemas/index.js';
-import resolvers from './resolvers/resolver.js';
 import jwt from 'jsonwebtoken';
-import { ConnectOptions } from 'mongoose';
-import unsplashRoutes from './routes/unsplashRoutes';
-
 
 dotenv.config();
-
+const PORT = process.env.PORT || 3001;
 const app = express();
 
-// JWT Authentication Middleware
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+
 const authMiddleware = (req: any, _res: any, next: any) => {
     const token = req.headers.authorization || '';
     try {
@@ -85,29 +87,38 @@ const authMiddleware = (req: any, _res: any, next: any) => {
         req.user = null;
     }
     next();
-};
+}
 
 app.use(authMiddleware);
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-});
 
+const startApolloServer = async () => {
     await server.start();
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+
     app.use('/graphql', expressMiddleware(server));
-    app.listen(process.env.PORT || 3001, () => {
-        console.log(`Server running on port ${process.env.PORT || 3001}`);
+
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static(path.join(__dirname, '../client/dist')));
+    }
+
+    app.get('*', (_req, res) => {
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
-})();
-function expressMiddleware(_server: ApolloServer<import("apollo-server-express").ExpressContext>): import("express-serve-static-core").RequestHandler<{}, any, any, import("qs").ParsedQs, Record<string, any>> {
-    throw new Error('Function not implemented.');
-}
 
-function startServer() {
-    throw new Error('Function not implemented.');
-}
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-startServer();
+    app.listen(PORT, () => {
+        console.log(`API server running on port ${PORT}`);
+        console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+    })
+
+};
+
+
+startApolloServer();
+
+
 
 
