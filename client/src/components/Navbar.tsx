@@ -1,14 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AuthService from '../utils/auth';
 
 const Navbar: React.FC = () => {
+  const logout = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    AuthService.logout();
+  };
   return (
     <Nav>
       <Logo>MadLibs</Logo>
       <NavLinks>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/create">Create Template</StyledLink>
+        <StyledLink to="/photo ">Photo search</StyledLink>
+        {AuthService.loggedIn() ? (
+                        <>
+                            <StyledLink to="/me">My Profile</StyledLink>
+                            <button onClick={logout}>Logout</button>
+                        </>
+                    ) : (
+                        <>
+                            <StyledLink to="/login">Login</StyledLink>
+                            <StyledLink to="/signup">Signup</StyledLink>
+                        </>
+                    )}
       </NavLinks>
     </Nav>
   );
@@ -23,6 +40,7 @@ const Nav = styled.nav`
   align-items: center;
   padding: 10px 20px;
   background-color: #4caf50;
+  position: relative;
 `;
 
 const Logo = styled.h1`
