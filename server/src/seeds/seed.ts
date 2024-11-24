@@ -1,25 +1,42 @@
-import db from '../config/db.js'
-import User from '../models/user.js'
-import cleanDB from './cleanDB.js'
+import mongoose from 'mongoose';
+import db from '../config/db';
+import User from '../models/user';
+import cleanDB from './cleanDB';
 
+const seedDatabase = async (): Promise<void> => {
+  try {
+    // Connect to the database
+    console.log('Connecting to database...');
+    await db();
 
-const seedDatabase = async () => {
-    try {
-        await db();
-        await cleanDB();
+    // Clean the database
+    console.log('Cleaning database...');
+    await cleanDB();
 
-        await User.create({ username: 'test', email: 'test@test.com',
-            password: 'Password123', savedStories: [] });
-        console.log('Database seeded successfully');
-        process.exit(0);
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            console.error('Error seeding database: ', error.message);
-        } else {
-        console.log('Unkown error seeding database');
+    // Seed the database with a test user
+    console.log('Seeding database...');
+    await User.create({
+      username: 'test',
+      email: 'test@test.com',
+      password: 'Password123',
+      savedStories: [],
+    });
+
+    console.log('Database seeded successfully');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error seeding database:', error.message);
+    } else {
+      console.error('Unknown error seeding database');
     }
-    process.exit(1);
-    }
+    process.exitCode = 1; // Indicate failure
+  } finally {
+    console.log('Closing database connection...');
+    await mongoose.connection.close();
+  }
 };
 
-seedDatabase();
+// Execute the seed function
+seedDatabase().then(() => {
+  console.log('Seed operation complete');
+});
