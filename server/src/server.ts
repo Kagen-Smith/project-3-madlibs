@@ -84,7 +84,7 @@ app.use(cors());
 app.use('/api/unsplash', unsplashRoutes);
 
 // JWT Authentication Middleware
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const authMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   const token = req.headers.authorization || '';
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET as string);
