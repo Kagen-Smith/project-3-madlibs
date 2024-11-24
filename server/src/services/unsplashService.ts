@@ -1,17 +1,16 @@
 import { createApi } from 'unsplash-js';
-import nodeFetch from 'node-fetch';
+import fetch from 'node-fetch'; // Use node-fetch v2.x
 
 const unsplash = createApi({
   accessKey: process.env.UNSPLASH_ACCESS_KEY!, // Access Key from .env
-  fetch: nodeFetch, // Required for Node.js
+  fetch, // Required for Node.js
 });
 
-// Function to search Unsplash for photos
 export const searchUnsplashPhotos = async (query: string) => {
   try {
     const response = await unsplash.search.getPhotos({
       query,
-      perPage: 10, // Limit results to 10 photos
+      perPage: 10, // Limit to 10 photos
     });
     return response.response?.results || [];
   } catch (error) {
