@@ -81,6 +81,7 @@ const app = express();
 // Middleware for parsing JSON and enabling CORS
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/api/unsplash', unsplashRoutes);
 
 // JWT Authentication Middleware
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {

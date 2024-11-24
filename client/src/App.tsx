@@ -1,14 +1,14 @@
-import './App.css'
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import './App.css';
 import React, { useState } from 'react';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 import TemplatesList from './components/TemplatesList';
 import PlayMadLib from './components/PlayMadLib';
 import CompletedStories from './components/CompletedStories';
 import PhotoSearch from './components/PhotoSearch';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-
-
+// Apollo Client Configuration
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql', // Replace with your GraphQL API endpoint
   cache: new InMemoryCache(),

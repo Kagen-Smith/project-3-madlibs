@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { fetchPhotos } from '../api/unsplashApi';
 
 const PhotoSearch: React.FC = () => {
   const [query, setQuery] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<any[]>([]);
 
-  const handleSearch = async () => {
+  const searchPhotos = async () => {
     try {
-      const results = await fetchPhotos(query);
-      setPhotos(results);
+      const response = await fetch(`/api/unsplash/search?query=${query}`);
+      const data = await response.json();
+      setPhotos(data);
     } catch (error) {
       console.error('Error fetching photos:', error);
     }
@@ -19,20 +19,19 @@ const PhotoSearch: React.FC = () => {
       <h2>Search Unsplash Photos</h2>
       <input
         type="text"
-        placeholder="Enter a search term"
+        placeholder="Search for photos"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '20px' }}>
-        {photos.map((photo: any) => (
-          <div key={photo.id} style={{ width: '150px', height: '150px' }}>
-            <img
-              src={photo.urls.small}
-              alt={photo.alt_description}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
+      <button onClick={searchPhotos}>Search</button>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        {photos.map((photo) => (
+          <img
+            key={photo.id}
+            src={photo.urls.small}
+            alt={photo.alt_description}
+            style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+          />
         ))}
       </div>
     </div>
