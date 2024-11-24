@@ -1,29 +1,21 @@
-import axios from 'axios';
-import dotenv from 'dotenv';
+import { createApi } from 'unsplash-js';
+import nodeFetch from 'node-fetch';
 
-dotenv.config();
+const unsplash = createApi({
+  accessKey: process.env.UNSPLASH_ACCESS_KEY!, // Access Key from .env
+  fetch: nodeFetch, // Required for Node.js
+});
 
-const UNSPLASH_API_URL = 'https://api.unsplash.com';
-const ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
-
-if (!ACCESS_KEY) {
-  throw new Error('Unsplash API Access Key is not defined in environment variables.');
-}
-
-export const searchPhotos = async (query: string) => {
+// Function to search Unsplash for photos
+export const searchUnsplashPhotos = async (query: string) => {
   try {
-    const response = await axios.get(`${UNSPLASH_API_URL}/search/photos`, {
-      params: {
-        query,
-        per_page: 10, // Adjust the number of results
-      },
-      headers: {
-        Authorization: `Client-ID ${ACCESS_KEY}`,
-      },
+    const response = await unsplash.search.getPhotos({
+      query,
+      perPage: 10, // Limit results to 10 photos
     });
-    return response.data.results; // Array of photo objects
+    return response.response?.results || [];
   } catch (error) {
-    console.error('Error fetching photos from Unsplash:', error);
-    throw error;
+    console.error('Error fetching Unsplash photos:', error);
+    throw new Error('Failed to fetch photos');
   }
 };
