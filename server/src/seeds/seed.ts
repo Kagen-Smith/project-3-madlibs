@@ -1,11 +1,9 @@
-import db from '../config/db.js'
 import User from '../models/user.js'
 import cleanDB from './cleanDB.js'
 
 
 const seedDatabase = async () => {
     try {
-        await db();
         await cleanDB();
 
         await User.create({ username: 'test', email: 'test@test.com',
