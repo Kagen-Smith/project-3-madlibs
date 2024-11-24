@@ -1,59 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-interface StoryProps {
-    story: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        map(arg0: (story: any) => import("react/jsx-runtime").JSX.Element): React.ReactNode;
-        length: number;
-        _id: string;
-        title: string;
-        story: string;
-    };
-    isLoggedUser: boolean;
-    onSelect: (arg0: string) => void;
-    template: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        map(arg0: (story: any) => import("react/jsx-runtime").JSX.Element): React.ReactNode;
-        length: number;
-        _id: string;
-        title: string;
-        story: string;
-    };
+interface Template {
+  _id: string;
+  title: string;
+  story: string; 
 }
 
-const TemplatesList = ({ story, onSelect }: StoryProps) => {
-   
-    return (
-        <Container> 
-            <StyledButton onClick={() => onSelect(story._id)}>My italian Summer!</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>how i scored the winning run!</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>my hero is...</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>what happened to my homework?</StyledButton>
-
-             
-
-        </Container>
-    )
+interface TemplatesListProps {
+  templates: Template[]; 
+  onSelect: (templateId: string) => void; 
 }
 
-    export default TemplatesList;
+const TemplatesList: React.FC<TemplatesListProps> = ({ templates, onSelect }) => {
+  if (!templates.length) {
+    return <p>No templates available.</p>;
+  }
 
-    // Styled Components
-    const Container = styled.div`
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    background-color: red;
-    `;
-    const StyledButton = styled.button`
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    `;
+  return (
+    <Container>
+      {templates.map((template) => (
+        <StyledButton key={template._id} onClick={() => onSelect(template._id)}>
+          {template.title}
+        </StyledButton>
+      ))}
+    </Container>
+  );
+};
+
+export default TemplatesList;
+
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  background-color: #f8f9fa;
+`;
+
+const StyledButton = styled.button`
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
