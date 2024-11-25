@@ -1,36 +1,40 @@
-const typeDefs = `
-  type User {
+const typeDefs = ` 
+  type UserInfo {
     _id: ID
-    name: String
+    username: String
     email: String
     password: String
-    stories: [String]!
-  }
-
-  type Auth {
-    token: ID!
-    user: User
+    savedStories: [StoryTemp]
   }
   
-  input UserInput {
-    name: String!
-    email: String!
-    password: String!
-  }
+  type StoryTemp {
+    storyId: ID
+    Title: String
+    Story: String
+    words: [String]
+    }
+    type Auth {
+        token: ID!
+        user: UserInfo
+    }
 
-  type Query {
-    users: [User]!
-    user(userId: ID!): User
-    me: User
-  }
+    type Query {
+        me: UserInfo
+    }
 
-  type Mutation {
-    addUser(input: UserInput!): Auth
-    login(email: String!, password: String!): Auth
-    addStory(userId: ID!, story: String!): User
-    removeUser: User
-    removeStory(Story: String!): User
-  }
-`;
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        saveStory(storyData: StoryInput!): UserInfo
+        removeStory(storyId: ID!): UserInfo
+    }
 
-export default typeDefs;
+    input StoryInput {
+        storyId: ID
+        Title: String
+        Story: String
+        words: [String]
+    }
+  
+    `;
+    export default typeDefs;

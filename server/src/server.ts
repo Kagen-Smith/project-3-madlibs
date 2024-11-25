@@ -4,7 +4,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
 import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
-
+import db from './config/db.js';
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ const startApolloServer = async () => {
   }
 
   // Ensure database connection errors are logged
-
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   // Start the server
   app.listen(PORT, () => {

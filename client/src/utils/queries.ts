@@ -4,7 +4,12 @@ export const QUERY_USER = gql`
     query user($id: ID!) {
         user(_id: $id) {
             _id
-            username
+            email
+            stories {
+                _id
+                title
+                story
+            }
         }
     }
 `;
@@ -14,13 +19,26 @@ export const QUERY_ME = gql`
         me {
             _id
             email
-            stories 
+            stories {
+                _id
+                title
+                story
+            }
         }
     }
 `;
 
+export const QUERY_STORIES = gql`
+    query stories {
+        stories {
+            _id
+            title
+            story
+        }
+    }
+`;
 
-export const QUERY_SINGLE_USER = gql`
+export const QUERY_SINGLE_PROFILE = gql`
     query user($id: ID!) {
         user(_id: $id) {
             _id
@@ -32,4 +50,16 @@ export const QUERY_SINGLE_USER = gql`
             }
         }
     }
+`;
+
+
+export const FETCH_TEMPLATES = gql`
+  query GetTemplates {
+    templates {
+      _id
+      title
+      description
+      content
+    }
+  }
 `;

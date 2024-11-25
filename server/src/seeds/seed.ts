@@ -1,28 +1,23 @@
+import User from '../models/user.js'
 import cleanDB from './cleanDB.js'
-import db from '../config/db.js'
-import { User } from '../models/index.js';
 
 
 const seedDatabase = async () => {
     try {
-        await db();
         await cleanDB();
-        await User.create({
-            username: 'admin',
-            email: ' test@test.com',
-            password: 'Password123'
-        });
-        console.log('Database seeded');
+
+        await User.create({ username: 'test', email: 'test@test.com',
+            password: 'Password123', savedStories: [] });
+        console.log('Database seeded successfully');
         process.exit(0);
     } catch (error: unknown) {
         if (error instanceof Error) {
-            console.error('Error seeding database:', error.message);
+            console.error('Error seeding database: ', error.message);
         } else {
-            console.error('Error seeding database');
-        }
-        process.exit(1);
+        console.log('Unkown error seeding database');
     }
-
+    process.exit(1);
+    }
 };
 
 seedDatabase();

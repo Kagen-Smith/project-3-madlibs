@@ -50,14 +50,6 @@ const Logo = styled.h1`
 const NavLinks = styled.div`
   display: flex;
   gap: 15px;
-  flex-direction: reverse-row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  
 `;
 
 const StyledLink = styled(Link)`
