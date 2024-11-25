@@ -8,7 +8,6 @@ import ErrorPage from './pages/error.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/signUp.tsx'
 import HomePage from './pages/HomePage.tsx'
-import CompletedStories from './components/completedStories.tsx'
 import PhotoSearch from './components/PhotoSearch.tsx'
 
 const router = createBrowserRouter([
@@ -33,10 +32,6 @@ const router = createBrowserRouter([
       { 
         path: '/signup',
         element: <Signup />,
-      },
-      {
-        path : '/stories',
-        element : <CompletedStories />,
       },
       {
         path : '/photo',
