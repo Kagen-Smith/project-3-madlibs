@@ -5,14 +5,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
-
-
-
+import { authenticateToken } from './config/jwt.js';
+import { Request, Response } from 'express'; // Import the Request and Response types from the express module
+ 
 dotenv.config();
 
-
-const PORT = process.env.PORT || 3001;
-const app = express();
 
 const server = new ApolloServer({
   typeDefs,
@@ -22,22 +19,25 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
-  
-  app.use(express.urlencoded({ extended: true }));
+
+  const PORT = process.env.PORT || 3001;
+  const app = express();
+  app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  app.use('/graphql', expressMiddleware(server));
- 
 
-  // if we're in production, serve client/dist as static assets
+  app.use('/graphql', expressMiddleware(server as any,
+    {
+      context: authenticateToken as any
+    }
+  ));
+
   if (process.env.NODE_ENV === 'production') {
- const clientBuildPath = path.join(__dirname = '../../client/dist');
- app.use(express.static(clientBuildPath));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 
- app.get('*', (_req, res) => {
-  res.sendFile(path.join(clientBuildPath, 'index.html'));
- })
+    app.get('*', (_req: Request, res: Response) => {
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
   }
-
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   app.listen(PORT, () => {
