@@ -21,13 +21,7 @@ const TemplatesList = ({ story, onSelect }: StoryProps) => {
    
     return (
         <Container> 
-            <StyledLink to='/play' onClick={() => onSelect(story._id)}>My italian Summer!</StyledLink>
-            <StyledLink to='/play' onClick={() => onSelect(story._id)}>how i scored the winning run!</StyledLink>
-            <StyledLink to='/play'onClick={() => onSelect(story._id)}>my hero is...</StyledLink>
-            <StyledLink to='/play' onClick={() => onSelect(story._id)}>what happened to my homework?</StyledLink>
-
-             
-
+            <StyledLink to='/play' onClick={() => onSelect(story._id)}>Play</StyledLink>
         </Container>
     )
 }

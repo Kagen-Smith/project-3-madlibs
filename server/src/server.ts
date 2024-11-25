@@ -5,10 +5,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
+import cors from 'cors';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3001;
+
 const app = express();
 
 const server = new ApolloServer({
@@ -17,7 +18,10 @@ const server = new ApolloServer({
 });
 
 const startApolloServer = async () => {
+  app.use(cors());
+  const PORT = process.env.PORT || 3001;
   await server.start();
+  await db();
   
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
@@ -32,9 +36,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
   }
-
-  // Ensure database connection errors are logged
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   // Start the server
   app.listen(PORT, () => {

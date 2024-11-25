@@ -27,10 +27,6 @@ const router = createBrowserRouter([
         element: <MadLibPage />,
       },
       {
-        path: '/user/:id',
-        element: <Profile />,
-      },
-      {
         path: '/login',
         element: <Login />,
       },
@@ -49,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: '/play',
         element: <MadLibPage />,
+      },
+      {
+        path: '/profiles/:profileid',
+        element: <Profile />,
+      },
+      {
+        path: '/me',
+        element: <Profile />,
       }
     ],
   },
