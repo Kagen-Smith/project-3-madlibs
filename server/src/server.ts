@@ -8,7 +8,6 @@ import db from './config/db.js';
 
 dotenv.config();
 
-const __dirname = path.resolve();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -29,11 +28,12 @@ const startApolloServer = async () => {
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+ const clientBuildPath = path.join(__dirname, '../../client/dist');
+ app.use(express.static(clientBuildPath));
 
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
+ app.get('*', (_req, res) => {
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
+ })
   }
 
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
