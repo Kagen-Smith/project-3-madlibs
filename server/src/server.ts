@@ -6,9 +6,10 @@ import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
 
+const PORT = process.env.PORT || 3001;
+
 dotenv.config();
 
-const PORT = process.env.PORT || 3001;
 const app = express();
 
 const server = new ApolloServer({
@@ -17,7 +18,10 @@ const server = new ApolloServer({
 });
 
 const startApolloServer = async () => {
+
+
   await server.start();
+  await db();
   
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
@@ -33,8 +37,6 @@ const startApolloServer = async () => {
     });
   }
 
-  // Ensure database connection errors are logged
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   // Start the server
   app.listen(PORT, () => {
