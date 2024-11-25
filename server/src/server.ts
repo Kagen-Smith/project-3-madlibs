@@ -32,14 +32,14 @@ const startApolloServer = async () => {
   // if we're in production, serve client/dist as static assets
   // Adjusted static file path for production
   if (process.env.NODE_ENV === 'production') {
-    const clientBuildPath = path.join(__dirname, '../../client/dist'); // Corrected path for Render
-    app.use(express.static(clientBuildPath));
-
+    // Correct path for Render deployment
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
+  
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-      res.sendFile(path.join(clientBuildPath, 'index.html'));
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
   }
+  
 
   // Ensure database connection errors are logged
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
