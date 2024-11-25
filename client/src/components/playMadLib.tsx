@@ -1,19 +1,42 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+
 const PlayMadLib = () => {
+    const [noun, setNoun] = useState('');
+    const [verb, setVerb] = useState('');
+    const [adjective, setAdjective] = useState('');
+    const [adverb, setAdverb] = useState('');
+    const [pluralNoun, setPluralNoun] = useState('');
+    const [number, setNumber] = useState('');
+    const [color, setColor] = useState('');
+    const [place, setPlace] = useState('');
+    const [name, setName] = useState('');
+
+    const handleSubmit = () => {
+        if (!noun || !verb || !adjective || !adverb || !pluralNoun || !number || !color || !place || !name.trim()) return;
+        const madLib = `Once upon a time, there was a ${adjective} ${noun} named ${name}. ${name} lived in a ${color} ${place} with ${number} ${pluralNoun}. ${name} loved to ${verb} ${adverb}.`;
+        alert(madLib);
+    }
+    const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    }
 
     return (
         <Container>
     
-            <StyledInput type="text" placeholder="Enter a noun" />
-            <StyledInput type="text" placeholder="Enter a verb" />
-            <StyledInput type="text" placeholder="Enter an adjective" />
-            <StyledInput type="text" placeholder="Enter an adverb" />
-            <StyledInput type="text" placeholder="Enter a plural noun" />
-            <StyledInput type="text" placeholder="Enter a number" />
-            <StyledInput type="text" placeholder="Enter a color" />
-            <StyledInput type="text" placeholder="Enter a place" />
-            <StyledInput type="text" placeholder="Enter a name" />
-            <StyledButton>Submit</StyledButton>
+            <StyledInput type="text" placeholder="Enter a noun" onChange={(e) => setNoun(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a verb" onChange={(e) => setVerb(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter an adjective" onChange={(e) => setAdjective(e.target.value)} onKeyUp={handleKeyUp} />
+            <StyledInput type="text" placeholder="Enter an adverb" onChange={
+                (e) => setAdverb(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a plural noun" onChange={(e) => setPluralNoun(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a number"onChange={(e) => setNumber(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a color" onChange={(e) => setColor(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a place" onChange={(e) => setPlace(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledInput type="text" placeholder="Enter a name"onChange={(e) => setName(e.target.value)} onKeyUp={handleKeyUp}/>
+            <StyledButton onClick={handleSubmit} >Submit</StyledButton>
         </Container>
 
     )

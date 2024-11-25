@@ -1,89 +1,38 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.header {
-  display: flex;
-
-  align-items: center;
-  position: relative;
-  width: 100%;
-  flex-direction: column;
-  flex-grow: 1;
-  min-width: auto;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  flex-grow: 1vh;
-
-  justify-content: space-between;
-}
-
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
-  }
+header {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+ 
 }
-
-/* Small screens (mobile phones) */
-@media (max-width: 575px) {
-  .portfolio-section {
-    padding: 1.5rem;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  .project-title {
-    font-size: 1.2rem;
-  }
+footer {
+    height: 100px;
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    bottom: 0;
 }
+main {
+    margin-top: 85px;
+    margin-bottom: 100px;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-color: red;
+    position: absolute;
 
-/* Medium screens (tablets) */
-@media (min-width: 576px) and (max-width: 767px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  .project-title {
-    font-size: 1.3rem;
-  }
-}
-
-/* Large screens (desktops) */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  }
-}
-
-
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

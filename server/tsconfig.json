@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist", // Output directory for compiled files
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "es6",
     "strict": true,
     "esModuleInterop": true,
