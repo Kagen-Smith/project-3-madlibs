@@ -6,12 +6,9 @@ import { JSX } from 'react/jsx-runtime';
 
 // Styled Components
 const Container = styled.div`
-
- 
   text-align: center;
   padding: 20px;
-  position: sticky;
-  background-color: red;
+  background-color: #f8f9fa;
 `;
 
 const TemplateList = styled.div`

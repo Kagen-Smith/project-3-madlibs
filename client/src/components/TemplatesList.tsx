@@ -32,7 +32,7 @@ const TemplatesList = ({ story, onSelect }: StoryProps) => {
     )
 }
 
-    export default TemplatesList;
+export default TemplatesList;
 
     // Styled Components
     const Container = styled.div`
