@@ -6,7 +6,7 @@ import Footer from './components/footer';
 import { Outlet } from 'react-router-dom';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql', // Replace with your GraphQL API endpoint
+  uri: '/graphql', // Replace with your GraphQL API endpoint
   cache: new InMemoryCache(),
 });
 

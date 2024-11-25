@@ -3,12 +3,16 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import Auth from '../utils/auth';
+const client = new ApolloClient({
+    uri: 'http://localhost:3001/graphql', // Replace with your GraphQL API endpoint
+    cache: new InMemoryCache(),
+  });
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Login = () => {
-    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [formState, setFormState] = useState({ email: '', password: '', username:'' });
     const [login, { error, data }] = useMutation(LOGIN_USER);
 
     // update state based on form input changes
@@ -39,10 +43,12 @@ const Login = () => {
         setFormState({
             email: '',
             password: '',
+            username: '',
         });
     };
 
     return (
+        <ApolloProvider client={client}>
         <main className="flex-row justify-center mb-4">
             <div className="col-12 col-lg-10">
                 <div className="card">
@@ -55,6 +61,14 @@ const Login = () => {
                             </p>
                         ) : (
                             <form onSubmit={handleFormSubmit}>
+                                 <input
+                                    className="form-input"
+                                    placeholder="username"
+                                    name="username"
+                                    type="text"
+                                    value={formState.username}
+                                    onChange={handleChange}
+                                />
                                 <input
                                     className="form-input"
                                     placeholder="Your email"
@@ -65,7 +79,7 @@ const Login = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="******"
+                                    placeholder="password"
                                     name="password"
                                     type="password"
                                     value={formState.password}
@@ -90,6 +104,7 @@ const Login = () => {
                 </div>
             </div>
         </main>
+        </ApolloProvider>
     );
 };
 export default Login;
