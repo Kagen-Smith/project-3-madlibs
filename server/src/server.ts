@@ -2,10 +2,11 @@ import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
-
-
+import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
