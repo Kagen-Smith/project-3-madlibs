@@ -45,6 +45,10 @@ const router = createBrowserRouter([
       {
         path : '/photo',
         element : <PhotoSearch />,
+      },
+      {
+        path: '/play',
+        element: <MadLibPage />,
       }
     ],
   },

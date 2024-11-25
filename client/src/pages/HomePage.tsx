@@ -1,32 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { FETCH_TEMPLATES } from '../utils/queries';
 import styled from 'styled-components';
 import TemplatesList from '../components/TemplatesList';
-import { Template } from '../types/template'; // Import the shared Template type
+import { JSX } from 'react/jsx-runtime';
 
-const HomePage: React.FC = () => {
-  const { loading, data } = useQuery(FETCH_TEMPLATES);
-  const [templates, setTemplates] = useState<Template[]>([]);
 
-  useEffect(() => {
-    if (data?.templates) {
-      setTemplates(data.templates);
-    }
-  }, [data]);
-
-  return (
-    <Container>
-      <h1>Choose a Mad Lib Template</h1>
-      <TemplateList>
-        {loading && <p>Loading...</p>}
-        <TemplatesList templates={templates} onSelect={(id) => console.log(`Selected template ID: ${id}`)} />
-      </TemplateList>
-    </Container>
-  );
-};
-
-export default HomePage;
 
 // Styled Components
 const Container = styled.div`
@@ -41,3 +17,36 @@ const TemplateList = styled.div`
   gap: 20px;
   justify-content: center;
 `;
+
+
+const HomePage: React.FC = () => {
+
+
+
+
+  return (
+    <Container>
+      <h1>Choose a Template</h1>
+      <TemplateList>
+      <TemplatesList story={{
+        map: function (_arg0: (story: any) => JSX.Element): React.ReactNode {
+          throw new Error('Function not implemented.');
+        },
+        length: 0,
+        _id: '',
+        title: '',
+        story: ''
+      }} isLoggedUser={false} onSelect={function (_arg0: string): void {
+        throw new Error('Function not implemented.');
+      } } template={function (_arg0: string): void {
+        throw new Error('Function not implemented.');
+      } } />
+      </TemplateList>
+    </Container>
+
+      )}
+    
+  
+
+
+export default HomePage;
