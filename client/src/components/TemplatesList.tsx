@@ -1,15 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
-interface Template {
-  _id: string;
-  title: string;
-  story: string; 
-}
+import { Template } from '../types/template'; // Import the shared Template type
 
 interface TemplatesListProps {
-  templates: Template[]; 
-  onSelect: (templateId: string) => void; 
+  templates: Template[]; // Array of templates
+  onSelect: (templateId: string) => void; // Function to handle selection
 }
 
 const TemplatesList: React.FC<TemplatesListProps> = ({ templates, onSelect }) => {
@@ -30,12 +25,12 @@ const TemplatesList: React.FC<TemplatesListProps> = ({ templates, onSelect }) =>
 
 export default TemplatesList;
 
+// Styled Components
 const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
   padding: 20px;
-  position: relative;
   background-color: #f8f9fa;
 `;
 

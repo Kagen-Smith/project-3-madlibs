@@ -3,13 +3,7 @@ import { useQuery } from '@apollo/client';
 import { FETCH_TEMPLATES } from '../utils/queries';
 import styled from 'styled-components';
 import TemplatesList from '../components/TemplatesList';
-
-interface Template {
-  _id: string;
-  title: string;
-  description: string;
-  content: string; 
-}
+import { Template } from '../types/template'; // Import the shared Template type
 
 const HomePage: React.FC = () => {
   const { loading, data } = useQuery(FETCH_TEMPLATES);
@@ -26,7 +20,7 @@ const HomePage: React.FC = () => {
       <h1>Choose a Mad Lib Template</h1>
       <TemplateList>
         {loading && <p>Loading...</p>}
-        <TemplatesList templates={templates} />
+        <TemplatesList templates={templates} onSelect={(id) => console.log(`Selected template ID: ${id}`)} />
       </TemplateList>
     </Container>
   );
@@ -34,6 +28,7 @@ const HomePage: React.FC = () => {
 
 export default HomePage;
 
+// Styled Components
 const Container = styled.div`
   text-align: center;
   padding: 20px;
