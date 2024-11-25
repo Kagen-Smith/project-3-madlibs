@@ -51,3 +51,16 @@ export const deleteUserData = async (id: number) => {
     .then(data => data)
     .catch(err => console.log(err));
 }
+
+export const getAllTemplates = async () => {
+    return fetch(`http://localhost:3001/templates`, 
+    {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+}

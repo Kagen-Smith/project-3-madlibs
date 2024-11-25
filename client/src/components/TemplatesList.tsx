@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -13,24 +14,17 @@ interface StoryProps {
     };
     isLoggedUser: boolean;
     onSelect: (arg0: string) => void;
-    template: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        map(arg0: (story: any) => import("react/jsx-runtime").JSX.Element): React.ReactNode;
-        length: number;
-        _id: string;
-        title: string;
-        story: string;
-    };
+    template: (arg0: string) => void;
 }
 
 const TemplatesList = ({ story, onSelect }: StoryProps) => {
    
     return (
         <Container> 
-            <StyledButton onClick={() => onSelect(story._id)}>My italian Summer!</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>how i scored the winning run!</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>my hero is...</StyledButton>
-            <StyledButton onClick={() => onSelect(story._id)}>what happened to my homework?</StyledButton>
+            <StyledLink to='/play' onClick={() => onSelect(story._id)}>My italian Summer!</StyledLink>
+            <StyledLink to='/play' onClick={() => onSelect(story._id)}>how i scored the winning run!</StyledLink>
+            <StyledLink to='/play'onClick={() => onSelect(story._id)}>my hero is...</StyledLink>
+            <StyledLink to='/play' onClick={() => onSelect(story._id)}>what happened to my homework?</StyledLink>
 
              
 
@@ -49,7 +43,9 @@ const TemplatesList = ({ story, onSelect }: StoryProps) => {
     position: relative;
     background-color: red;
     `;
-    const StyledButton = styled.button`
+    const StyledLink = styled(Link)`
+    display: flex;
+    flex-direction: column;
     background-color: #4caf50;
     color: white;
     padding: 10px 20px;
