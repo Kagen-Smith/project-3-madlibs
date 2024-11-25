@@ -5,10 +5,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
-
-const PORT = process.env.PORT || 3001;
+import cors from 'cors';
 
 dotenv.config();
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -18,8 +19,8 @@ const server = new ApolloServer({
 });
 
 const startApolloServer = async () => {
-
-
+  app.use(cors());
+  const PORT = process.env.PORT || 3001;
   await server.start();
   await db();
   
@@ -36,7 +37,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
   }
-
 
   // Start the server
   app.listen(PORT, () => {
