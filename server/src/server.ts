@@ -7,6 +7,11 @@ import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
 import { authenticateToken } from './config/jwt.js';
 import { Request, Response } from 'express'; // Import the Request and Response types from the express module
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
  
 dotenv.config();
 
