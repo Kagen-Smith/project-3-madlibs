@@ -1,17 +1,16 @@
-/* Importing Google Fonts */
+/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-/* Root Variables for Colors and Fonts */
+/* Root Variables for Theme */
 :root {
-  --primary-color: #4caf50; /* Vibrant green */
-  --secondary-color: #ff6f61; /* Warm coral */
-  --background-color: #f9f9f9; /* Light gray */
-  --font-color: #333; /* Dark gray */
-  --card-shadow: rgba(0, 0, 0, 0.1);
+  --primary-color: #4caf50;
+  --secondary-color: #f4f4f4;
+  --background-color: #f9f9f9;
+  --font-color: #333;
   --font-family: 'Poppins', sans-serif;
 }
 
-/* Global Reset */
+/* General Reset */
 body {
   margin: 0;
   padding: 0;
@@ -27,100 +26,64 @@ body {
   text-align: center;
 }
 
-/* Header */
+/* Header Styling */
 .header {
-  text-align: center;
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .header h1 {
+  color: var(--primary-color);
   font-size: 2.5rem;
-  color: var(--primary-color);
 }
 
-.header nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0;
-  list-style: none;
-}
-
-.header nav ul li a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.header nav ul li a:hover {
+/* Buttons */
+button {
   background-color: var(--primary-color);
   color: white;
-  border-radius: 5px;
-}
-
-/* Button Styling */
-button {
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 6px var(--card-shadow);
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: darkgreen;
 }
 
-/* Card Styling */
+/* Card Styles */
 .card {
   background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 4px 6px var(--card-shadow);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Main Content Layout */
+/* Main Section */
 .main {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  color: var(--font-color);
-  background-color: var(--primary-color);
-  color: white;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  transition: filter 300ms ease-in-out;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  button {
-    width: 100%;
-    font-size: 1rem;
-  }
+.logo:hover {
+  filter: drop-shadow(0 0 1rem var(--primary-color));
 }
