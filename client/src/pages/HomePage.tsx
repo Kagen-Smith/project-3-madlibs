@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from 'styled-components';
 import TemplatesList from '../components/TemplatesList';
 import { JSX } from 'react/jsx-runtime';
@@ -8,7 +10,7 @@ import { JSX } from 'react/jsx-runtime';
 const Container = styled.div`
   text-align: center;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: red;
 `;
 
 const TemplateList = styled.div`
@@ -26,7 +28,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
-      <h1>Choose a Template</h1>
+      <h1>Press Play</h1>
       <TemplateList>
       <TemplatesList story={{
         map: function (_arg0: (story: any) => JSX.Element): React.ReactNode {

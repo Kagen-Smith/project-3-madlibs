@@ -44,16 +44,7 @@ const StyledButton = styled.button`
 `;
 const StyledFooter = styled.footer`
     background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    position: sticky;
-    bottom: 0;
-    min-height: 100%;
-    max-height: 100%;
-    justify-content: space-between;
-    min-width: 100%;
-    max-width: 100%;
-    display: flex-row
+   align-items: center;
+   align-content: center;
     `;
     

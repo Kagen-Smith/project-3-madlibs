@@ -6,6 +6,8 @@ import dotenv from 'dotenv';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/db.js';
 
+
+
 dotenv.config();
 
 
@@ -28,7 +30,7 @@ const startApolloServer = async () => {
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
- const clientBuildPath = path.join(__dirname, '../../client/dist');
+ const clientBuildPath = path.join(__dirname = '../../client/dist');
  app.use(express.static(clientBuildPath));
 
  app.get('*', (_req, res) => {
