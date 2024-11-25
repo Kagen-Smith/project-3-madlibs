@@ -8,6 +8,8 @@ import db from './config/db.js';
 
 dotenv.config();
 
+const __dirname = path.resolve();
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
