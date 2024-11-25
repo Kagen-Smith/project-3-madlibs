@@ -9,6 +9,7 @@ import cors from 'cors';
 
 dotenv.config();
 
+const __dirname = path.resolve();
 
 const app = express();
 
