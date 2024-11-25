@@ -16,32 +16,32 @@ const server = new ApolloServer({
   resolvers,
 });
 
-
 const startApolloServer = async () => {
   await server.start();
   
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use('/graphql', expressMiddleware(server));
- 
 
-  // if we're in production, serve client/dist as static assets
+  // Adjusted static file path for production
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    const clientBuildPath = path.join(__dirname, '../../client/dist'); // Corrected path for Render
+    app.use(express.static(clientBuildPath));
 
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+      res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
   }
 
+  // Ensure database connection errors are logged
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+  // Start the server
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
   });
 };
-
 
 startApolloServer();
 
