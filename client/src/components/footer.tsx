@@ -36,24 +36,23 @@ export default Footer;
 // Styled Components
 const StyledButton = styled.button`
     background-color: pink;
+    display: flex;
+    gap: 15px;
+    flex-direction: reverse-row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
 `;
 const StyledFooter = styled.footer`
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    position: sticky;
-    bottom: 0;
-    min-height: 100%;
-    max-height: 100%;
-    justify-content: space-between;
-    min-width: 100%;
-    max-width: 100%;
-    display: flex-row
-    `;
-    
+
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 10px 20px;
+background-color: #4caf50;
+position: relative;
+
+`;

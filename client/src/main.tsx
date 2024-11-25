@@ -8,7 +8,6 @@ import ErrorPage from './pages/error.tsx'
 import Login from './pages/Login.tsx'
 import Signup from './pages/signUp.tsx'
 import HomePage from './pages/HomePage.tsx'
-import CompletedStories from './components/completedStories.tsx'
 import PhotoSearch from './components/PhotoSearch.tsx'
 
 const router = createBrowserRouter([
@@ -27,10 +26,6 @@ const router = createBrowserRouter([
         element: <MadLibPage />,
       },
       {
-        path: '/user/:id',
-        element: <Profile />,
-      },
-      {
         path: '/login',
         element: <Login />,
       },
@@ -39,16 +34,20 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path : '/stories',
-        element : <CompletedStories />,
-      },
-      {
         path : '/photo',
         element : <PhotoSearch />,
       },
       {
         path: '/play',
         element: <MadLibPage />,
+      },
+      {
+        path: '/profiles/:profileid',
+        element: <Profile />,
+      },
+      {
+        path: '/me',
+        element: <Profile />,
       }
     ],
   },

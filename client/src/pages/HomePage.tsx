@@ -1,22 +1,10 @@
-import styled from 'styled-components';
+
 import TemplatesList from '../components/TemplatesList';
 import { JSX } from 'react/jsx-runtime';
 
 
 
-// Styled Components
-const Container = styled.div`
-  text-align: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-`;
 
-const TemplateList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-`;
 
 
 const HomePage: React.FC = () => {
@@ -25,10 +13,11 @@ const HomePage: React.FC = () => {
 
 
   return (
-    <Container>
-      <h1>Choose a Template</h1>
-      <TemplateList>
+    <div>
+      <h1>Press Play to begin</h1>
+      <div>
       <TemplatesList story={{
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
         map: function (_arg0: (story: any) => JSX.Element): React.ReactNode {
           throw new Error('Function not implemented.');
         },
@@ -36,13 +25,15 @@ const HomePage: React.FC = () => {
         _id: '',
         title: '',
         story: ''
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       }} isLoggedUser={false} onSelect={function (_arg0: string): void {
         throw new Error('Function not implemented.');
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } } template={function (_arg0: string): void {
         throw new Error('Function not implemented.');
       } } />
-      </TemplateList>
-    </Container>
+      </div>
+    </div>
 
       )}
     
